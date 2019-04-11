@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Property;
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
 use App\Repository\PropertyRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Knp\Component\Pager\PaginatorInterface;
+
 
 class PropertyController extends AbstractController
 {
@@ -31,6 +34,7 @@ class PropertyController extends AbstractController
         $this->entityManager = $entityManager; 
     }
 
+
     /**
      * display all houses
      *
@@ -39,17 +43,27 @@ class PropertyController extends AbstractController
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {
-            $properties = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(), /* query NOT result */
+        $search = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class, $search);
+        $form->handleRequest($request);
+        
+        $properties = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search), /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
             12 /*limit per page*/
         );
 
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties',
-            'properties' => $properties
+            'properties' => $properties,
+            'form'  => $form->createView()
             ]);
     }
+
+
+
+
+
 
     /**
      * 301 permanent redirect if the slug is not correct in th url 
