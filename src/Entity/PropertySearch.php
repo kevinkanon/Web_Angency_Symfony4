@@ -2,6 +2,8 @@
 // Entity who represents a search about property by criteria. no persit needed with database
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class PropertySearch 
 {
     /**
@@ -16,6 +18,12 @@ class PropertySearch
 
      /**
      * @var int|null
+     *  * @Assert\Range(
+     *      min = 10,
+     *      max = 400,
+     *      minMessage = "You cannot be smaller than 10cm",
+     *      maxMessage = "You cannot be taller than 400cm"
+     * )
      */
     private $minSurface;
 
@@ -26,6 +34,7 @@ class PropertySearch
     public function getMinPrice(): ?int { return $this->minPrice; }
 
     public function getMinSurface(): ?int { return $this->minSurface; }
+
 
     /*      SETTERS     */
     public function setMaxPrice(int $maxPrice): self

@@ -17,16 +17,12 @@ class PropertySearchType extends AbstractType
             ->add('minSurface', IntegerType::class, [
                     'required' =>   false,
                     'label' =>   false,
-                    'attr' =>   [
-                        'placeholder' => 'Surface minimale'
-                    ]
+                    'attr' =>   ['placeholder' => 'Surface minimale']
                 ])
             ->add('maxPrice', IntegerType::class, [
                     'required' =>   false,
                     'label' =>   false,
-                    'attr' =>   [
-                        'placeholder' => 'Budget max'
-                    ]
+                    'attr' =>   ['placeholder' => 'Budget max']
                 ])
             
             //->add('minPrice')
