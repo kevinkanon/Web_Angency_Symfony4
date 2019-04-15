@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Option;
 use App\Entity\Property;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -25,6 +27,12 @@ class PropertyType extends AbstractType
                 'choices' => ['Electric' => Property::HEAT[0], 'Gaz' => Property::HEAT[1] ],
             ]) */
             ->add('heat', ChoiceType::class, ['choices' => $this->getPropertyChoices()] )
+            /* option entity connected to property entity in the form to select  property bases on options */
+            ->add('options', EntityType::class, [
+                'class' => Option::class,
+                'choice_label' => 'name',
+                'multiple' => true
+            ])
             ->add('city')
             ->add('address')
             ->add('postal_code')

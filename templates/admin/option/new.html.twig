@@ -6,12 +6,11 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1>Créer un nouveau bien !</h1>
+        <h1>Créer un nouvelle option !</h1> 
+
         {#  include the same form template also used by the create property page    #}
-        {{  include ('admin/property/_form.html.twig', {form: form})  }}
+        {{  include ('admin/option/_form.html.twig', {form: form})  }}
+        
     </div>
 
 {% endblock %}
-
-
-

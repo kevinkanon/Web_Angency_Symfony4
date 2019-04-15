@@ -25,24 +25,15 @@ class Option
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Property", inversedBy="options")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Property", mappedBy="options")
      */
     private $properties;
 
-    public function __construct()
-    {
-        $this->properties = new ArrayCollection();
-    }
+    public function __construct() { $this->properties = new ArrayCollection(); }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    public function getId(): ?int { return $this->id; }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+    public function getName(): ?string { return $this->name; }
 
     public function setName(string $name): self
     {
@@ -54,10 +45,7 @@ class Option
     /**
      * @return Collection|Property[]
      */
-    public function getProperties(): Collection
-    {
-        return $this->properties;
-    }
+    public function getProperties(): Collection { return $this->properties; }
 
     public function addProperty(Property $property): self
     {

@@ -6,11 +6,11 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1>Editer le bien</h1> 
+        <h1>Editer l'option</h1> 
+
         {#  include the same form template also used by the create property page    #}
-        {{  include ('admin/property/_form.html.twig', {form: form, button: 'Editer'})  }}    
+        {{  include ('admin/option/_form.html.twig', {form: form, button: 'Editer'})  }}
+        
     </div>
 
 {% endblock %}
-
-
