@@ -31,6 +31,7 @@ class PropertyType extends AbstractType
             /* option entity connected to property entity in the form to select  property bases on options */
             ->add('options', EntityType::class, [
                 'class' => Option::class,
+                'required' => false,
                 'choice_label' => 'name',
                 'multiple' => true
             ])
